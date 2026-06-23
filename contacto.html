@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto | EcoCaja</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:80vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.2rem;
+max-width:900px;
+line-height:1.8;
+}
+
+/* SECCIONES */
+
+section{
+padding:90px 10%;
+}
+
+.titulo{
+text-align:center;
+font-size:2.7rem;
+color:#2c5d34;
+margin-bottom:50px;
+}
+
+/* CONTACTO */
+
+.contacto{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.formulario{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.formulario input,
+.formulario textarea{
+
+width:100%;
+padding:15px;
+margin:10px 0;
+border:2px solid #ddd;
+border-radius:10px;
+outline:none;
+}
+
+.formulario textarea{
+height:150px;
+resize:none;
+}
+
+.formulario button{
+
+width:100%;
+padding:15px;
+border:none;
+background:#2c5d34;
+color:white;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.formulario button:hover{
+background:#1e4525;
+}
+
+/* INFO */
+
+.info{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+color:#2c5d34;
+margin-bottom:10px;
+}
+
+/* FAQ */
+
+.faq-item{
+margin-bottom:15px;
+}
+
+.faq-btn{
+
+width:100%;
+padding:18px;
+background:#2c5d34;
+color:white;
+border:none;
+text-align:left;
+cursor:pointer;
+font-size:17px;
+border-radius:10px;
+}
+
+.faq-content{
+
+max-height:0;
+overflow:hidden;
+background:white;
+transition:.4s;
+padding:0 15px;
+border-radius:0 0 10px 10px;
+}
+
+.faq-content p{
+padding:15px 0;
+}
+
+/* CHAT */
+
+.chat-box{
+
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.chat-btn{
+
+padding:15px 30px;
+border:none;
+background:#2c5d34;
+color:white;
+font-size:18px;
+border-radius:30px;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* CONTADOR */
+
+.estadisticas{
+
+background:#2c5d34;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+text-align:center;
+}
+
+.estadisticas h2{
+font-size:3rem;
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+position:absolute;
+top:85px;
+left:0;
+width:100%;
+background:rgb(255, 255, 255);
+flex-direction:column;
+padding:20px;
+text-align: center;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.contacto{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a href="index.html">Inicio</a></li>
+<li><a href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a href="promociones.html">Promociones</a></li>
+<li><a href="nutrición.html">Nutrición</a></li>
+<li><a class="activo" href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Contáctanos</h1>
+
+<p>
+Queremos escucharte. Envía tus consultas, sugerencias o comentarios sobre EcoCaja y nuestros productos.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Envíanos un Mensaje</h2>
+
+<div class="contacto">
+
+<div class="formulario">
+
+<input type="text" placeholder="Nombre Completo">
+
+<input type="email" placeholder="Correo Electrónico">
+
+<input type="text" placeholder="Asunto">
+
+<textarea placeholder="Escribe tu mensaje..."></textarea>
+
+<button onclick="enviarMensaje()">
+Enviar Mensaje
+</button>
+
+</div>
+
+<div class="info">
+
+<div class="card">
+<h3>📍 Dirección</h3>
+<p>La Paz - Bolivia</p>
+</div>
+
+<div class="card">
+<h3>📞 Teléfono</h3>
+<p>+591 71282073</p>
+</div>
+
+<div class="card">
+<h3>📧 Correo</h3>
+<p> cris09182003@gmail.com </p>
+</div>
+
+<div class="card">
+<h3>🕒 Horario de atención</h3>
+<p>Lunes a Viernes 08:00 - 18:00</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Preguntas Frecuentes</h2>
+
+<div class="faq-item">
+
+<button class="faq-btn">
+¿Dónde puedo comprar EcoCaja?
+</button>
+
+<div class="faq-content">
+<p>
+Puedes encontrar nuestros productos en los puntos de venta autorizados.
+</p>
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-btn">
+¿La caja es reciclable?
+</button>
+
+<div class="faq-content">
+<p>
+Sí, está diseñada para reutilizarse y posteriormente reciclarse.
+</p>
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-btn">
+¿Cómo participo en promociones?
+</button>
+
+<div class="faq-content">
+<p>
+Ingresa a la sección promociones y registra tu código.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Asistente Virtual</h2>
+
+<div class="chat-box">
+
+<h3>🤖 EcoBot</h3>
+
+<p id="respuesta">
+Hola, soy EcoBot. ¿En qué puedo ayudarte?
+</p>
+
+<button class="chat-btn" onclick="responder()">
+Hacer Pregunta
+</button>
+
+</div>
+
+</section>
+
+<section class="estadisticas">
+
+<div>
+<h2 id="n1">0</h2>
+<p>Mensajes Recibidos</p>
+</div>
+
+<div>
+<h2 id="n2">0</h2>
+<p>Clientes Atendidos</p>
+</div>
+
+<div>
+<h2 id="n3">0</h2>
+<p>Consultas Resueltas</p>
+</div>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<script>
+
+/* MENU */
+
+function toggleMenu(){
+
+document.getElementById("menu")
+.classList.toggle("show");
+
+}
+
+/* FORMULARIO */
+
+function enviarMensaje(){
+
+alert("✅ Mensaje enviado correctamente. Gracias por contactarnos.");
+
+}
+
+/* FAQ */
+
+const faq =
+document.querySelectorAll(".faq-btn");
+
+faq.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const contenido =
+btn.nextElementSibling;
+
+if(contenido.style.maxHeight){
+
+contenido.style.maxHeight=null;
+
+}else{
+
+contenido.style.maxHeight=
+contenido.scrollHeight+"px";
+
+}
+
+});
+
+});
+
+/* CHAT */
+
+const respuestas=[
+
+"🌱 Gracias por tu interés en EcoCaja.",
+"♻ Puedes revisar la sección de reciclaje.",
+"📍 Consulta nuestros puntos de venta.",
+"🎁 Revisa nuestras promociones actuales.",
+"💚 Gracias por apoyar el cuidado del medio ambiente."
+
+];
+
+function responder(){
+
+let aleatorio=
+Math.floor(Math.random()*respuestas.length);
+
+document.getElementById("respuesta")
+.innerText=
+respuestas[aleatorio];
+
+}
+
+/* CONTADORES */
+
+function contador(id,fin,vel){
+
+let n=0;
+
+let x=setInterval(()=>{
+
+n++;
+
+document.getElementById(id)
+.innerText=n;
+
+if(n>=fin){
+clearInterval(x);
+}
+
+},vel);
+
+}
+
+contador("n1",500,5);
+contador("n2",300,10);
+contador("n3",250,15);
+
+</script>
+
+</body>
+</html>

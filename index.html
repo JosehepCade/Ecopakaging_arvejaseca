@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arveja Seca</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:80vh;
+background:url("banner.png") center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero-content{
+background:rgba(0,0,0,.6);
+padding:40px;
+border-radius:15px;
+color:white;
+width:80%;
+}
+
+.hero-content h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero-content p{
+font-size:20px;
+line-height:1.6;
+}
+
+/* INTRO */
+
+.section{
+padding:70px 10%;
+}
+
+.section h2{
+text-align:center;
+margin-bottom:30px;
+font-size:35px;
+color:#234d20;
+}
+
+.section p{
+font-size:18px;
+line-height:1.8;
+text-align:justify;
+}
+
+/* TARJETAS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+cursor:pointer;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+/* GIF */
+
+.gif-section{
+text-align:center;
+background:white;
+padding:60px;
+}
+
+.gif-section img{
+max-width:100%;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
+justify-content:center;
+align-items:center;
+z-index:5000;
+}
+
+.modal-content{
+background:white;
+width:80%;
+max-width:700px;
+padding:30px;
+border-radius:15px;
+position:relative;
+animation:aparecer .5s;
+}
+
+@keyframes aparecer{
+from{
+transform:scale(.5);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.close{
+position:absolute;
+top:10px;
+right:20px;
+font-size:35px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+footer p{
+margin:10px 0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+flex-direction:column;
+position:absolute;
+top:85px;
+right:0;
+width:100%;
+background:rgb(255, 255, 255);
+padding:20px 0;
+}
+
+nav ul.active{
+display:flex;
+}
+
+nav ul li{
+text-align:center;
+padding:10px 0;
+}
+
+.hero-content h1{
+font-size:2.5rem;
+}
+
+.hero{
+height:60vh;
+}
+
+.modal-content img{
+height:250px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a class="activo" href="index.html">Inicio</a></li>
+<li><a href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a href="promociones.html">Promociones</a></li>
+<li><a href="nutrición.html">Nutrición</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+<h1>La Arveja Seca</h1>
+
+<p>
+La arveja seca representa una alternativa saludable y sostenible para
+la alimentación moderna.
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>¿Qué es la Arveja Seca?</h2>
+
+<p>
+
+La arveja seca es una leguminosa obtenida mediante el secado natural de la
+arveja verde. Este proceso permite conservar sus nutrientes durante largos
+periodos de tiempo sin necesidad de refrigeración.
+
+Es ampliamente utilizada en la preparación de sopas, guisos, purés y
+diversas recetas tradicionales. Su alto contenido de proteínas vegetales
+la convierte en una excelente opción para complementar dietas balanceadas.
+
+Además, contiene fibra dietética, hierro, fósforo, magnesio y vitaminas
+del complejo B, nutrientes esenciales para el correcto funcionamiento
+del organismo.
+
+</p>
+
+<div class="cards">
+
+<div class="card" onclick="abrirModal(
+'Proteínas',
+'https://www.bolivianita.de/cdn/shop/products/tostadodearveja_003.jpg?v=1628891137',
+'La arveja seca posee una gran cantidad de proteínas vegetales que ayudan al desarrollo muscular y al mantenimiento del organismo.'
+)">
+<img src="https://www.bolivianita.de/cdn/shop/products/tostadodearveja_003.jpg?v=1628891137">
+<h3>Proteínas</h3>
+<p>Haz clic para conocer más.</p>
+</div>
+
+<div class="card" onclick="abrirModal(
+'Fibra',
+'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAJQKnwnanysrNYWl1EJqxeXVKCMcjWJG_lpSrSQaUxNwQtEMT5fLd3PU&s=10',
+'Su elevado contenido de fibra favorece la digestión y mejora la salud intestinal.'
+)">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAJQKnwnanysrNYWl1EJqxeXVKCMcjWJG_lpSrSQaUxNwQtEMT5fLd3PU&s=10">
+<h3>Fibra</h3>
+<p>Haz clic para conocer más.</p>
+</div>
+
+<div class="card" onclick="abrirModal(
+'Minerales',
+'https://pbs.twimg.com/media/Dz2LgvtX0AE6BqQ.jpg',
+'Contiene hierro, fósforo, magnesio y otros minerales importantes para el cuerpo.'
+)">
+<img src="https://pbs.twimg.com/media/Dz2LgvtX0AE6BqQ.jpg">
+<h3>Minerales</h3>
+<p>Haz clic para conocer más.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="gif-section">
+
+<h2>Un pequeño aporte</h2>
+
+<br>
+
+<!-- CAMBIAR POR TU GIF -->
+
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZm1pY200dzBkeGdua2t0ZjZpM3FvbGt1YmJmam1xcnE3MGQwMTl3ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kf4U0PvOkHDXBEsJLI/giphy.gif">
+
+</section>
+
+<section class="section">
+
+<h2>Importancia Alimentaria</h2>
+
+<p>
+
+La arveja seca juega un papel importante en la alimentación de millones
+de personas alrededor del mundo. Su bajo costo, facilidad de almacenamiento
+y alto valor nutricional permiten que sea considerada una de las legumbres
+más valiosas dentro de una dieta saludable.
+
+También contribuye a la agricultura sostenible gracias a su capacidad de
+fijar nitrógeno en el suelo, mejorando la fertilidad y reduciendo la necesidad
+de fertilizantes químicos.
+
+</p>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="cerrarModal()">&times;</span>
+
+<h2 id="titulo"></h2>
+
+<br>
+
+<img id="imagen" src="" width="100%" style="border-radius:10px;">
+
+<br><br>
+
+<p id="texto"></p>
+
+</div>
+
+</div>
+
+<script>
+
+function abrirModal(titulo,img,texto){
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("titulo").innerHTML=titulo;
+
+document.getElementById("imagen").src=img;
+
+document.getElementById("texto").innerHTML=texto;
+
+}
+
+function cerrarModal(){
+document.getElementById("modal").style.display="none";
+}
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+window.onclick=function(e){
+
+let modal=document.getElementById("modal");
+
+if(e.target==modal){
+modal.style.display="none";
+}
+
+}
+
+</script>
+
+</body>
+</html>

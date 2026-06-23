@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reutiliza tu Caja</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:4rem;
+margin-bottom:20px;
+
+}
+
+.hero-content p{
+max-width:700px;
+font-size:1.2rem;
+line-height:1.8;
+
+}
+
+/* SECCIONES */
+
+section{
+padding:70px 10%;
+}
+
+.titulo{
+text-align:center;
+font-size:2.4rem;
+color:#2c5d34;
+margin-bottom:20px;
+}
+
+.descripcion{
+text-align:center;
+max-width:900px;
+margin:auto;
+line-height:1.8;
+font-size:1.1rem;
+}
+
+/* GALERIA */
+
+.galeria{
+margin-top:50px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.tarjeta{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+cursor:pointer;
+transition:.4s;
+}
+
+.tarjeta:hover{
+transform:translateY(-8px);
+}
+
+.tarjeta img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.tarjeta h3{
+padding:15px;
+color:#2c5d34;
+}
+
+.tarjeta p{
+padding:0 15px 20px;
+}
+
+/* ESTADISTICAS */
+
+.estadisticas{
+background:#2c5d34;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+text-align:center;
+}
+
+.numero{
+font-size:3rem;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+/* CONSEJOS */
+
+.consejos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.tip{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+left:0;
+top:0;
+background:rgba(0,0,0,.8);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:white;
+width:90%;
+max-width:800px;
+border-radius:20px;
+overflow:hidden;
+animation:zoom .4s;
+}
+
+.modal-content img{
+    width:100%;
+    max-height:80vh;
+    object-fit:contain;
+}
+
+.modal-text{
+padding:25px;
+}
+
+.cerrar{
+position:absolute;
+top:20px;
+right:30px;
+font-size:40px;
+color:white;
+cursor:pointer;
+}
+
+@keyframes zoom{
+from{
+transform:scale(.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+flex-direction:column;
+position:absolute;
+top:85px;
+right:0;
+width:100%;
+background:white;
+padding:20px 0;
+text-align: center;
+}
+
+nav ul.active{
+display:flex;
+}
+
+nav ul li{
+text-align:center;
+padding:10px 0;
+}
+
+.hero-content h1{
+font-size:2.5rem;
+}
+
+.hero{
+height:60vh;
+}
+
+.modal-content img{
+height:250px;
+}
+
+}
+</style>
+</head>
+
+<body>
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a href="index.html">Inicio</a></li>
+<li><a class="activo" href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a href="promociones.html">Promociones</a></li>
+<li><a href="nutrición.html">Nutrición</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+<section class="hero">
+
+<div class="hero-content">
+<h1>Dale una Segunda Vida a tu Caja</h1>
+
+<p>
+Antes de desechar una caja, piensa en todas las posibilidades que ofrece.
+Con creatividad puedes transformarla en organizadores, juguetes, decoraciones,
+almacenamiento y muchas otras soluciones útiles para tu hogar.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Ideas para Reutilizar tu Caja</h2>
+
+<p class="descripcion">
+Cada caja puede convertirse en un recurso valioso. Haz clic sobre cualquier idea para descubrir cómo aprovecharla.
+</p>
+
+<div class="galeria">
+
+<div class="tarjeta"
+onclick="abrirModal(
+'Dispensador',
+'3.png',
+'Con el Dispensador controlar las porciones y poder tener el producto listo para su uso nunca fue tan fácil. '
+)">
+<img src="3.png">
+<h3>Dispensador</h3>
+<p>Recarga y prepara fácilmente las recetas que más deseas.
+</p>
+</div>
+
+<div class="tarjeta"
+onclick="abrirModal(
+'Maceta para plantas germinadas',
+'4.png',
+'Haz que las plantas bebes puedan crecer bien, siguiendo las instrucciones.'
+)">
+<img src="4.png">
+<h3>Maceta</h3>
+<p>Para que tus plantas crezcan en un lugar acogedor y de manera ecológica.</p>
+</div>
+
+<div class="tarjeta"
+onclick="abrirModal(
+'Germinador de semillas',
+'1.png',
+'Ideal para ayudar a que una plantita nazca.'
+)">
+<img src="1.png">
+<h3>Germinador de semillas</h3>
+<p>Una vez finalizada la vida util de la caja, la misma termina el ciclo sirviendo 
+    como un germinador de semilla. </p>
+
+</div>
+
+
+
+</section>
+
+<section class="estadisticas">
+
+<div>
+<div class="numero">95%</div>
+<p>Material reciclable</p>
+</div>
+
+<div>
+<div class="numero">3+</div>
+<p>Posibles reutilizaciones</p>
+</div>
+
+<div>
+<div class="numero">100%</div>
+<p>Creatividad ilimitada</p>
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Consejos Ecológicos</h2>
+
+<div class="consejos">
+
+<div class="tip">
+<h3>Reduce Residuos</h3>
+<p>Utiliza la caja varias veces antes de reciclarla.</p>
+</div>
+
+<div class="tip">
+<h3>Personaliza</h3>
+<p>Decora con pinturas, pegatinas o papel reciclado.</p>
+</div>
+
+<div class="tip">
+<h3>Organiza</h3>
+<p>Clasifica objetos pequeños y evita el desorden.</p>
+</div>
+
+<div class="tip">
+<h3>Recicla al Final</h3>
+<p>Cuando ya no sirva, deposítala en la tierra como germinador.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<div class="modal" id="modal">
+
+<span class="cerrar" onclick="cerrarModal()">&times;</span>
+
+<div class="modal-content">
+
+<img id="modalImg">
+
+<div class="modal-text">
+
+<h2 id="modalTitulo"></h2>
+
+<br>
+
+<p id="modalTexto"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+    
+function abrirModal(titulo,img,texto){
+
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalTitulo").innerHTML=titulo;
+document.getElementById("modalImg").src=img;
+document.getElementById("modalTexto").innerHTML=texto;
+
+}
+
+function cerrarModal(){
+document.getElementById("modal").style.display="none";
+}
+
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+
+
+window.onclick=function(e){
+
+let modal=document.getElementById("modal");
+
+if(e.target==modal){
+modal.style.display="none";
+}
+
+}
+
+</script>
+
+</body>
+</html>

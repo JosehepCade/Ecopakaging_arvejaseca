@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puntos de Venta | EcoCaja</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://image.made-in-china.com/202f0j00IfMYtkSogUcO/Good-Quality-Cash-Register-for-Supermarket-and-Convenience-Store.webp");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+color:white;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.2rem;
+max-width:800px;
+line-height:1.8;
+}
+
+/* SECCIONES */
+
+section{
+padding:80px 10%;
+}
+
+.titulo{
+text-align:center;
+font-size:2.5rem;
+color:#2c5d34;
+margin-bottom:20px;
+}
+
+/* BUSCADOR */
+
+.buscador{
+max-width:700px;
+margin:40px auto;
+display:flex;
+gap:10px;
+}
+
+.buscador input{
+flex:1;
+padding:15px;
+font-size:17px;
+border:2px solid #2c5d34;
+border-radius:50px;
+outline:none;
+}
+
+.buscador button{
+padding:15px 25px;
+border:none;
+background:#2c5d34;
+color:white;
+border-radius:50px;
+cursor:pointer;
+}
+
+/* RESULTADOS */
+
+.resultados{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card-content h3{
+color:#2c5d34;
+margin-bottom:10px;
+}
+
+.card-content p{
+margin-bottom:8px;
+}
+
+.estado{
+display:inline-block;
+padding:8px 15px;
+background:#2c5d34;
+color:white;
+border-radius:20px;
+margin-top:10px;
+}
+
+/* MAPA */
+
+.mapa{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+margin-top:50px;
+}
+
+.mapa iframe{
+width:100%;
+height:450px;
+border:none;
+border-radius:15px;
+}
+
+/* ESTADISTICAS */
+
+.estadisticas{
+background:#2c5d34;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+text-align:center;
+}
+
+.estadisticas h3{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+position:absolute;
+top:85px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+padding:20px;
+text-align: center;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.buscador{
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a href="index.html">Inicio</a></li>
+<li><a href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a class="activo" href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a href="promociones.html">Promociones</a></li>
+<li><a href="nutrición.html">Nutrición</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Puntos de Venta</h1>
+
+<p>
+Encuentra los establecimientos autorizados donde puedes adquirir nuestros productos y participar en las promociones EcoCaja.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Buscar Ciudad</h2>
+
+<div class="buscador">
+
+<input
+type="text"
+id="buscar"
+placeholder="Escribe una ciudad...">
+
+<button onclick="filtrarTiendas()">
+Buscar
+</button>
+
+</div>
+
+<div class="resultados" id="resultados">
+
+<div class="card" data-ciudad="la paz">
+
+<img src="https://images.pexels.com/photos/3735185/pexels-photo-3735185.jpeg">
+
+<div class="card-content">
+
+<h3>EcoMarket La Paz</h3>
+
+<p>📍 Zona Sur</p>
+
+<p>🕒 08:00 - 21:00</p>
+
+<span class="estado">Disponible</span>
+
+</div>
+
+</div>
+
+<div class="card" data-ciudad="cochabamba">
+
+<img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d">
+
+<div class="card-content">
+
+<h3>EcoCenter Cochabamba</h3>
+
+<p>📍 Av. América</p>
+
+<p>🕒 09:00 - 20:00</p>
+
+<span class="estado">Disponible</span>
+
+</div>
+
+</div>
+
+<div class="card" data-ciudad="santa cruz">
+
+<img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6">
+
+<div class="card-content">
+
+<h3>EcoStore Santa Cruz</h3>
+
+<p>📍 Equipetrol</p>
+
+<p>🕒 08:00 - 22:00</p>
+
+<span class="estado">Disponible</span>
+
+</div>
+
+</div>
+
+<div class="card" data-ciudad="oruro">
+
+<img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc">
+
+<div class="card-content">
+
+<h3>EcoBox Oruro</h3>
+
+<p>📍 Centro</p>
+
+<p>🕒 09:00 - 19:00</p>
+
+<span class="estado">Disponible</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Mapa Referencial</h2>
+
+<div class="mapa">
+
+<iframe
+src="https://maps.google.com/maps?q=bolivia&t=&z=5&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+</div>
+
+</section>
+
+<section class="estadisticas">
+
+<div>
+
+<h3 id="num1">0</h3>
+
+<p>Puntos de Venta</p>
+
+</div>
+
+<div>
+
+<h3 id="num2">0</h3>
+
+<p>Ciudades</p>
+
+</div>
+
+<div>
+
+<h3 id="num3">0</h3>
+
+<p>Clientes Atendidos</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<script>
+
+/* MENU */
+
+function toggleMenu(){
+
+document.getElementById("menu")
+.classList.toggle("show");
+
+}
+
+/* BUSCADOR */
+
+function filtrarTiendas(){
+
+let texto =
+document.getElementById("buscar")
+.value.toLowerCase();
+
+let tarjetas =
+document.querySelectorAll(".card");
+
+tarjetas.forEach(card=>{
+
+let ciudad =
+card.dataset.ciudad;
+
+if(ciudad.includes(texto)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+/* CONTADORES */
+
+function animar(id,final){
+
+let valor=0;
+
+let intervalo=setInterval(()=>{
+
+valor++;
+
+document.getElementById(id)
+innerText=valor;
+
+if(valor>=final){
+
+clearInterval(intervalo);
+
+}
+
+},25);
+
+}
+
+window.onload=()=>{
+
+let a=0;
+let b=0;
+let c=0;
+
+let x=setInterval(()=>{
+
+a++;
+document.getElementById("num1").innerText=a;
+
+if(a>=24) clearInterval(x);
+
+},50);
+
+let y=setInterval(()=>{
+
+b++;
+document.getElementById("num2").innerText=b;
+
+if(b>=9) clearInterval(y);
+
+},150);
+
+let z=setInterval(()=>{
+
+c+=20;
+document.getElementById("num3").innerText=c;
+
+if(c>=5000) clearInterval(z);
+
+},10);
+
+}
+
+</script>
+
+</body>
+</html>

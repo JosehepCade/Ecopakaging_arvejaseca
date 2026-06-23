@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrición de la Arveja Seca | EcoCaja</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:90vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.pexels.com/photos/23384627/pexels-photo-23384627.jpeg");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.2rem;
+max-width:900px;
+line-height:1.8;
+}
+
+/* SECCIONES */
+
+section{
+padding:90px 10%;
+}
+
+.titulo{
+text-align:center;
+font-size:2.7rem;
+color:#2c5d34;
+margin-bottom:40px;
+}
+
+/* BENEFICIOS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.icono{
+font-size:4rem;
+margin-bottom:15px;
+}
+
+/* NUTRICION */
+
+.tabla{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+overflow:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#2c5d34;
+color:white;
+padding:15px;
+}
+
+td{
+padding:15px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+/* RECETAS */
+
+.recetas{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.receta{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.receta:hover{
+transform:translateY(-10px);
+}
+
+.receta img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.info{
+padding:20px;
+}
+
+.info h3{
+color:#2c5d34;
+margin-bottom:10px;
+}
+
+/* CONSERVACION */
+
+.consejos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.tip{
+background:#2c5d34;
+color:white;
+padding:25px;
+border-radius:20px;
+}
+
+/* CONTADOR */
+
+.estadisticas{
+background:#2c5d34;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+text-align:center;
+}
+
+.estadisticas h2{
+font-size:3rem;
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+position:absolute;
+top:85px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+padding:20px;
+text-align: center;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.hero h1{
+font-size:2.5rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a href="index.html">Inicio</a></li>
+<li><a href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a href="promociones.html">Promociones</a></li>
+<li><a class="activo" href="nutrición.html">Nutrición</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Arveja Seca</h1>
+
+<p>
+Un alimento nutritivo, económico y versátil. Rica en proteínas vegetales, fibra, vitaminas y minerales esenciales para una alimentación saludable.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Beneficios Nutricionales</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="icono">💪</div>
+<h3>Proteínas</h3>
+<p>Ayudan al crecimiento y mantenimiento muscular.</p>
+</div>
+
+<div class="card">
+<div class="icono">❤️</div>
+<h3>Salud Cardiovascular</h3>
+<p>Su fibra ayuda a controlar el colesterol.</p>
+</div>
+
+<div class="card">
+<div class="icono">🌱</div>
+<h3>Fuente Vegetal</h3>
+<p>Alternativa nutritiva para diversas dietas.</p>
+</div>
+
+<div class="card">
+<div class="icono">⚡</div>
+<h3>Energía</h3>
+<p>Aporta carbohidratos complejos de liberación lenta.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Información Nutricional (100 g)</h2>
+
+<div class="tabla">
+
+<table>
+
+<tr>
+<th>Nutriente</th>
+<th>Cantidad</th>
+</tr>
+
+<tr>
+<td>Calorías</td>
+<td>340 kcal</td>
+</tr>
+
+<tr>
+<td>Proteínas</td>
+<td>24 g</td>
+</tr>
+
+<tr>
+<td>Carbohidratos</td>
+<td>60 g</td>
+</tr>
+
+<tr>
+<td>Fibra</td>
+<td>16 g</td>
+</tr>
+
+<tr>
+<td>Hierro</td>
+<td>4.5 mg</td>
+</tr>
+
+<tr>
+<td>Potasio</td>
+<td>980 mg</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Recetas Recomendadas</h2>
+
+<div class="recetas">
+
+<div class="receta">
+
+<img src="https://storage.googleapis.com/fitia_recipe_images/GR-R-V-00001195%2Fv3%2Frect.jpeg">
+
+<div class="info">
+
+<h3>🍲 Sopa de Arvejas</h3>
+
+<p>
+Cocina las arvejas con cebolla, zanahoria y especias para obtener una sopa nutritiva y reconfortante.
+</p>
+
+</div>
+
+</div>
+
+<div class="receta">
+
+<img src="https://jaliscocina.com/wp-content/uploads/2020/03/ensalada-de-arvejas.jpg">
+
+<div class="info">
+
+<h3>🥗 Ensalada de Arvejas</h3>
+
+<p>
+Mezcla arvejas cocidas con tomate, cebolla, zanahoria y limón.
+</p>
+
+</div>
+
+</div>
+
+<div class="receta">
+
+<img src="https://queapetito.com/wp-content/uploads/2020/01/guisantes-7.jpg">
+
+<div class="info">
+
+<h3>🥙 Puré de Arvejas</h3>
+
+<p>
+Ideal como acompañamiento saludable para carnes o vegetales.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Derivados de la Arveja</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="icono">🌾</div>
+<h3>Harina de Arveja</h3>
+<p>Utilizada en panes, galletas y alimentos funcionales.</p>
+</div>
+
+<div class="card">
+<div class="icono">🥛</div>
+<h3>Bebidas Vegetales</h3>
+<p>Alternativa nutritiva a las bebidas tradicionales.</p>
+</div>
+
+<div class="card">
+<div class="icono">🍔</div>
+<h3>Proteína Vegetal</h3>
+<p>Utilizada en productos alimenticios modernos.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Consejos de Conservación</h2>
+
+<div class="consejos">
+
+<div class="tip">
+✔ Guardar en un recipiente hermético.
+</div>
+
+<div class="tip">
+✔ Mantener en lugar fresco y seco.
+</div>
+
+<div class="tip">
+✔ Evitar exposición directa al sol.
+</div>
+
+<div class="tip">
+✔ Revisar periódicamente humedad o plagas.
+</div>
+
+</div>
+
+</section>
+
+<section class="estadisticas">
+
+<div>
+<h2 id="n1">0</h2>
+<p>g de Proteína</p>
+</div>
+
+<div>
+<h2 id="n2">0</h2>
+<p>g de Fibra</p>
+</div>
+
+<div>
+<h2 id="n3">0</h2>
+<p>mg de Potasio</p>
+</div>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+
+function animar(id,fin,vel){
+
+let n=0;
+
+let x=setInterval(()=>{
+
+n++;
+
+document.getElementById(id).innerText=n;
+
+if(n>=fin){
+clearInterval(x);
+}
+
+},vel);
+
+}
+
+animar("n1",24,50);
+animar("n2",16,60);
+animar("n3",98,20);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Promociones | EcoCaja</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:90vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://thumbs.dreamstime.com/b/muchas-cajas-de-cart%C3%B3n-y-un-soporte-letreros-con-la-palabra-venta-bienes-productos-precios-promociones-atractivos-grande-156157015.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+animation:entrada 1s;
+}
+
+.hero p{
+font-size:1.2rem;
+max-width:800px;
+line-height:1.8;
+}
+
+@keyframes entrada{
+from{
+opacity:0;
+transform:translateY(-40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* SECCIONES */
+
+section{
+padding:90px 10%;
+}
+
+.titulo{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:20px;
+color:#2c5d34;
+}
+
+/* CONTADOR */
+
+.contador{
+background:#2c5d34;
+color:white;
+text-align:center;
+padding:70px 20px;
+border-radius:20px;
+}
+
+#countdown{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.tiempo{
+background:white;
+color:#2c5d34;
+padding:20px;
+border-radius:15px;
+min-width:120px;
+}
+
+.tiempo h2{
+font-size:3rem;
+}
+
+/* PROMOS */
+
+.promos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.promo{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.promo:hover{
+transform:translateY(-10px);
+}
+
+.promo img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.info{
+padding:20px;
+}
+
+.descuento{
+background:#2c5d34;
+color:white;
+display:inline-block;
+padding:8px 15px;
+border-radius:30px;
+margin-bottom:15px;
+}
+
+/* CUPON */
+
+.cupon{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+max-width:800px;
+margin:auto;
+}
+
+.codigo{
+font-size:2rem;
+font-weight:bold;
+color:#2c5d34;
+padding:15px;
+border:3px dashed #2c5d34;
+margin:20px 0;
+}
+
+/* RULETA */
+
+.ruleta-box{
+text-align:center;
+}
+
+.ruleta{
+width:250px;
+height:250px;
+border-radius:50%;
+border:10px solid #2c5d34;
+margin:auto;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+font-weight:bold;
+background:white;
+transition:4s;
+}
+
+button{
+padding:15px 30px;
+margin-top:20px;
+border:none;
+background:#2c5d34;
+color:white;
+border-radius:30px;
+cursor:pointer;
+font-size:16px;
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+position:absolute;
+top:85px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+padding:20px;
+text-align: center;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.hero h1{
+font-size:2.5rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a href="index.html">Inicio</a></li>
+<li><a href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a class="activo" href="promociones.html">Promociones</a></li>
+<li><a href="nutrición.html">Nutrición</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Promociones Exclusivas</h1>
+
+<p>
+Aprovecha descuentos especiales, premios instantáneos y beneficios únicos por participar en EcoCaja.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="contador">
+
+<h2>⏳ Promoción por Tiempo Limitado</h2>
+
+<div id="countdown">
+
+<div class="tiempo">
+<h2 id="dias">00</h2>
+<p>Días</p>
+</div>
+
+<div class="tiempo">
+<h2 id="horas">00</h2>
+<p>Horas</p>
+</div>
+
+<div class="tiempo">
+<h2 id="minutos">00</h2>
+<p>Minutos</p>
+</div>
+
+<div class="tiempo">
+<h2 id="segundos">00</h2>
+<p>Segundos</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Promociones Disponibles</h2>
+
+<div class="promos">
+
+<div class="promo">
+
+<img src="5.png">
+
+<div class="info">
+
+<div class="descuento">
+20% OFF
+</div>
+
+<h3>Compra EcoCaja</h3>
+
+<p>
+Obtén un descuento especial en tu siguiente compra.
+</p>
+
+</div>
+
+</div>
+
+<div class="promo">
+
+<img src="7.png">
+
+<div class="info">
+
+<div class="descuento">
+2x1
+</div>
+
+<h3> Promoción Familiar </h3>
+
+<p>
+Compra una unidad y recibe otra completamente gratis.
+</p>
+
+</div>
+
+</div>
+
+<div class="promo">
+
+<img src="6.png">
+
+<div class="info">
+
+<div class="descuento">
+BONO
+</div>
+
+<h3>Participa y Gana</h3>
+
+<p>
+Registra tu código y participa por premios especiales.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Cupón Especial</h2>
+
+<div class="cupon">
+
+<h3>Tu código de descuento</h3>
+
+<div class="codigo">
+ECOCAJA2026
+</div>
+
+<p>
+Presenta este cupón en cualquier punto autorizado.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Ruleta de Premios</h2>
+
+<div class="ruleta-box">
+
+<div class="ruleta" id="ruleta">
+---->
+</div>
+
+<button onclick="girarRuleta()">
+Girar Ruleta
+</button>
+
+<h3 id="premio" style="margin-top:20px;"></h3>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<script>
+
+/* MENU */
+
+function toggleMenu(){
+
+document.getElementById("menu")
+.classList.toggle("show");
+
+}
+
+/* CUENTA REGRESIVA */
+
+const fechaFinal =
+new Date().getTime() + (5*24*60*60*1000);
+
+setInterval(()=>{
+
+let ahora = new Date().getTime();
+
+let distancia = fechaFinal - ahora;
+
+let dias =
+Math.floor(distancia/(1000*60*60*24));
+
+let horas =
+Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
+
+let minutos =
+Math.floor((distancia%(1000*60*60))/(1000*60));
+
+let segundos =
+Math.floor((distancia%(1000*60))/1000);
+
+document.getElementById("dias").innerText=dias;
+document.getElementById("horas").innerText=horas;
+document.getElementById("minutos").innerText=minutos;
+document.getElementById("segundos").innerText=segundos;
+
+},1000);
+
+/* RULETA */
+
+const premios=[
+
+"🎉 10% de descuento",
+"🎁 Producto Gratis",
+"🎊 Cupón Especial",
+"🏆 Participación Extra",
+"⭐ 20% de descuento",
+"🎈 Premio Sorpresa"
+
+];
+
+function girarRuleta(){
+
+let ruleta =
+document.getElementById("ruleta");
+
+let premio =
+premios[Math.floor(Math.random()*premios.length)];
+
+let giro =
+3600 + Math.floor(Math.random()*720);
+
+ruleta.style.transform =
+"rotate("+giro+"deg)";
+
+setTimeout(()=>{
+
+document.getElementById("premio")
+.innerHTML =
+"Ganaste: <br><br>"+premio;
+
+},4000);
+
+}
+
+</script>
+
+</body>
+</html>

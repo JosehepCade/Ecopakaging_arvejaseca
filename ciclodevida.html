@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciclo de Vida | EcoCaja</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7f3;
+color:#333;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffe09d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+z-index:9999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+color:#2c5d34;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+font-weight:600;
+color:#333;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2c5d34;
+}
+
+.activo{
+color:#2c5d34 !important;
+border-bottom:3px solid #2c5d34;
+padding-bottom:5px;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:90vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:900px;
+font-size:1.2rem;
+line-height:1.8;
+}
+
+/* SECCIONES */
+
+section{
+padding:90px 10%;
+}
+
+.titulo{
+text-align:center;
+font-size:2.7rem;
+margin-bottom:50px;
+color:#2c5d34;
+}
+
+/* TIMELINE */
+
+.timeline{
+position:relative;
+max-width:1200px;
+margin:auto;
+}
+
+.timeline::after{
+content:'';
+position:absolute;
+width:6px;
+background:#2c5d34;
+top:0;
+bottom:0;
+left:50%;
+margin-left:-3px;
+}
+
+.container{
+padding:20px 50px;
+position:relative;
+width:50%;
+opacity:0;
+transform:translateY(80px);
+transition:1s;
+}
+
+.container.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.left{
+left:0;
+}
+
+.right{
+left:50%;
+}
+
+.container::after{
+content:'';
+position:absolute;
+width:25px;
+height:25px;
+background:white;
+border:5px solid #2c5d34;
+border-radius:50%;
+top:30px;
+right:-17px;
+z-index:1;
+}
+
+.right::after{
+left:-16px;
+}
+
+.content{
+padding:25px;
+background:white;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.content img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.content h3{
+color:#2c5d34;
+margin-bottom:10px;
+}
+
+/* INFO */
+
+.estadisticas{
+background:#2c5d34;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+text-align:center;
+}
+
+.estadisticas h2{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+/* PROCESO */
+
+.proceso{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.icono{
+font-size:4rem;
+margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+background:#234d20;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.menu-btn{
+display:block;
+}
+
+nav ul{
+display:none;
+position:absolute;
+top:85px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+padding:20px;
+text-align: center;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.timeline::after{
+left:20px;
+}
+
+.container{
+width:100%;
+padding-left:70px;
+padding-right:20px;
+}
+
+.left,.right{
+left:0;
+}
+
+.container::after{
+left:7px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<h2>EcoPackaging</h2>
+</div>
+
+<nav>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+
+<li><a href="index.html">Inicio</a></li>
+<li><a href="reutiliza.html">Reutiliza</a></li>
+<li><a href="segundouuso.html">Manualidades</a></li>
+<li><a class="activo" href="ciclodevida.html">Ciclo de Vida</a></li>
+<li><a href="puntosdeventa.html">Puntos de Venta</a></li>
+<li><a href="promociones.html">Promociones</a></li>
+<li><a href="nutrición.html">Nutrición</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Ciclo de Vida de EcoCaja</h1>
+
+<p>
+Descubre el recorrido completo de una EcoCaja, desde la obtención de la materia prima hasta su reutilización y reciclaje final.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Línea de Tiempo Interactiva</h2>
+
+<div class="timeline">
+
+<div class="container left">
+
+<div class="content">
+
+<img src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1">
+
+<h3>🌳 Obtención de Materia Prima</h3>
+
+<p>
+La producción inicia con materiales provenientes de fuentes responsables y procesos sostenibles.
+</p>
+
+</div>
+
+</div>
+
+<div class="container right">
+
+<div class="content">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFJTQCh33M_JpaRAVUZdJG17h3oBFCLGM_SQ&s">
+
+<h3>🏭 Fabricación</h3>
+
+<p>
+Los materiales son transformados en cajas resistentes listas para su distribución.
+</p>
+
+</div>
+
+</div>
+
+<div class="container left">
+
+<div class="content">
+
+<img src="https://static.vecteezy.com/system/resources/previews/000/670/747/non_2x/vector-set-of-delivery-men-with-box-distribution-service.jpg">
+
+<h3>🚚 Distribución</h3>
+
+<p>
+Las cajas son enviadas a distintos puntos de venta y centros de distribución.
+</p>
+
+</div>
+
+</div>
+
+<div class="container right">
+
+<div class="content">
+
+<img src="https://www.iglesiadeosorno.cl/img_noticias/fotoint1676410f0ba116_19122024_426am.JPG">
+
+<h3>🛒 Consumo</h3>
+
+<p>
+El consumidor adquiere el producto y utiliza el empaque en su vida diaria.
+</p>
+
+</div>
+
+</div>
+
+<div class="container left">
+
+<div class="content">
+
+<img src="https://blog.jumboprinters.com/wp-content/uploads/2022/02/Disen%CC%83o-sin-ti%CC%81tulo-33.jpg">
+
+<h3>♻ Reutilización</h3>
+
+<p>
+La caja puede transformarse en organizadores, juguetes o elementos decorativos.
+</p>
+
+</div>
+
+</div>
+
+<div class="container right">
+
+<div class="content">
+
+<img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b">
+
+<h3>🌎 Reciclaje</h3>
+
+<p>
+Cuando termina su uso, los materiales vuelven al ciclo productivo mediante reciclaje.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="estadisticas">
+
+<div>
+
+<h2 id="n1">0</h2>
+
+<p>Cajas Recicladas</p>
+
+</div>
+
+<div>
+
+<h2 id="n2">0</h2>
+
+<p>Kg Recuperados</p>
+
+</div>
+
+<div>
+
+<h2 id="n3">0</h2>
+
+<p>Árboles Protegidos</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Impacto Positivo</h2>
+
+<div class="proceso">
+
+<div class="card">
+
+<div class="icono">🌳</div>
+
+<h3>Menos Tala</h3>
+
+<p>
+Reducimos el consumo innecesario de recursos naturales.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icono">♻</div>
+
+<h3>Más Reciclaje</h3>
+
+<p>
+Los materiales vuelven a incorporarse a nuevos procesos.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icono">🌎</div>
+
+<h3>Menor Impacto</h3>
+
+<p>
+Disminuimos la generación de residuos contaminantes.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icono">💚</div>
+
+<h3>Economía Circular</h3>
+
+<p>
+Promovemos una cultura de reutilización y sostenibilidad.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>NAVIRA_ARVEJA SECA</h3>
+
+<p>
+Nutrición • Agricultura • Sostenibilidad
+</p>
+
+<p>
+© 2026 Todos los derechos reservados - Cristhian Mamani Mamani - DGP - 7mo semestre - Diseño tridimensional - H5
+</p>
+
+</footer>
+
+<script>
+
+/* MENU */
+
+function toggleMenu(){
+
+document.getElementById("menu")
+.classList.toggle("show");
+
+}
+
+/* TIMELINE ANIMADA */
+
+const elementos =
+document.querySelectorAll(".container");
+
+window.addEventListener("scroll",()=>{
+
+elementos.forEach(el=>{
+
+let pos =
+el.getBoundingClientRect().top;
+
+if(pos < window.innerHeight - 100){
+
+el.classList.add("show");
+
+}
+
+});
+
+});
+
+/* CONTADORES */
+
+function contador(id,fin,vel){
+
+let n=0;
+
+let intervalo=setInterval(()=>{
+
+n++;
+
+document.getElementById(id)
+.innerText=n;
+
+if(n>=fin){
+
+clearInterval(intervalo);
+
+}
+
+},vel);
+
+}
+
+contador("n1",250,10);
+contador("n2",120,20);
+contador("n3",45,50);
+
+</script>
+
+</body>
+</html>
